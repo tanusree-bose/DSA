@@ -1,0 +1,26 @@
+function isLongPressedName(name, typed) {
+    let i = 0; // Pointer for 'name'
+    let j = 0; // Pointer for 'typed'
+
+    while (j < typed.length) {
+        if (i < name.length && name[i] === typed[j]) {
+            // Characters match, move both pointers
+            i++;
+            j++;
+        } else if (j > 0 && typed[j] === typed[j - 1]) {
+            // Handle long press: typed[j] matches the previous character in typed
+            j++;
+        } else {
+            // Characters don't match and it's not a long press
+            return false;
+        }
+    }
+
+    // Ensure all characters in 'name' were matched
+    return i === name.length;
+}
+
+// Test Cases
+console.log(isLongPressedName("alex", "aaleex")); // true
+console.log(isLongPressedName("saeed", "ssaaedd")); // false
+console.log(isLongPressedName("leelee", "lleeelee")); // true
