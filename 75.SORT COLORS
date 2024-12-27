@@ -1,0 +1,19 @@
+var sortColors = function(nums) {
+    let colorCount = {
+        0: 0,
+        1: 0,
+        2: 0
+    }
+    
+    for (let i = 0; i < nums.length; i++) {
+        colorCount[nums[i]]++;
+    }
+    
+    let index = 0;
+    for (let color in colorCount) {
+        for (let j = 0; j < colorCount[color]; j++) {
+            nums[index] = parseInt(color);
+            index++;
+        }
+    }
+};
